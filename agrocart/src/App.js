@@ -8,6 +8,9 @@ import AddProduct from "./components/AddProduct";
 import { auth } from "./firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import NavigationBar from "./components/Navbar";
+import ProductDetails from "./components/ProductDetails";
+import Checkout from "./components/Checkout";
+import Payment from "./components/Payment";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -26,7 +29,9 @@ const App = () => {
     setCart((prevCart) => [...prevCart, product]);
     alert(`${product.title} added to cart!`);
   };
-
+  const removeFromCart = (id) => {
+    setCart(cart.filter((item) => item.id !== id));
+  };
   return (
     <Router>
       <NavigationBar user={user} cartCount={cart.length} />
@@ -36,6 +41,9 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/add-product" element={user ? <AddProduct /> : <Login />} />
+        <Route path="/product/:id" element={<ProductDetails />} /> {/* ✅ Add View Details Route */}
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </Router>
   );

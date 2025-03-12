@@ -12,8 +12,6 @@
         "destination": "/index.html"
       }
     ]
-  },
-  "storage": {
-    "rules": "firebase storage:rules"
   }
+ 
 }
